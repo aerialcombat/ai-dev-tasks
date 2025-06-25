@@ -1,8 +1,3 @@
----
-description: 
-globs: 
-alwaysApply: false
----
 # Task List Management
 
 Guidelines for managing task lists in markdown files to track progress on completing a PRD
@@ -12,7 +7,7 @@ Guidelines for managing task lists in markdown files to track progress on comple
 - **Completion protocol:**  
   1. When you finish a **sub‑task**, immediately mark it as completed by changing `[ ]` to `[x]`.
   2. If **all** subtasks underneath a parent task are now `[x]`, follow this sequence:
-    - **First**: Run the full test suite (`pytest`, `npm test`, `bin/rails test`, etc.)
+    - **First**: Run the full test suite (for Go: `make test` if a Makefile is present, otherwise `go test ./...`; for Svelte/TypeScript: `npm run test` or `npx vitest`)
     - **Only if all tests pass**: Stage changes (`git add .`)
     - **Clean up**: Remove any temporary files and temporary code before committing
     - **Commit**: Use a descriptive commit message that:
@@ -38,6 +33,8 @@ Guidelines for managing task lists in markdown files to track progress on comple
    - List every file created or modified.
    - Give each file a one‑line description of its purpose.
 
+3. **For Go projects, ensure the Makefile is kept up to date for build and test commands.**
+
 ## AI Instructions
 
 When working with task lists, the AI must:
@@ -46,6 +43,7 @@ When working with task lists, the AI must:
 2. Follow the completion protocol:
    - Mark each finished **sub‑task** `[x]`.
    - Mark the **parent task** `[x]` once **all** its subtasks are `[x]`.
+   - **No sub-task or parent task is considered complete until all relevant unit tests (for both backend and frontend) have been written and pass successfully.**
 3. Add newly discovered tasks.
 4. Keep "Relevant Files" accurate and up to date.
 5. Before starting work, check which sub‑task is next.
